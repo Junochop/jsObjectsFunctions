@@ -76,8 +76,20 @@ function domStringMaker(animalArray) {
 // take pet names and create dom string
 // call printToDom function
     for(var i = 0; i < animalArray.length; i++){
-        var animalString = "<h1>" + animalArray[i].petName + "</h1>";
-        printToDom(animalString, "pet-names"); 
+        var animalString = "";
+        if(animalArray[i].isFavorite){
+            animalString += '<div class="pet isFav">';
+        } else if (!animalArray[i].isFavorite){
+            animalString += '<div class="pet isNotFav">';
+        } else {
+            animalString += '<div class="pet">';
+        }
+        
+        animalString += "<h1>" + animalArray[i].petName + "</h1>";
+        animalString += "<h1> owner:" + animalArray[i].instructorName + "</h1>";
+        animalString += "<h1> Type:" + animalArray[i].animalType + "</h1>";
+        animalString += '</div>';
+        printToDom(animalString, "pet-name"); 
     //hard coding "pet-names"; why not Return?? 2 return will quit the function, no idea what or how many things in the array
      }
 }
@@ -87,8 +99,9 @@ function domStringMaker(animalArray) {
 
 function printToDom(stringToPrint, divId){  
 // take string and innerHTML to the divId
-  var  myDiv = document.getElementById(divId);
+  var myDiv = document.getElementById(divId);
   myDiv.innerHTML += stringToPrint;
+  
 //how long the array is.  so it should call 5 times
 } 
 
@@ -97,3 +110,5 @@ domStringMaker(instructorsPets);
 
 // challenge 3: display each pet as card
 //display name, owner, type, if pet is fav background tobe green if not background to be red
+
+//break up animalString to build a card
